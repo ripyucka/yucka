@@ -1,5 +1,4 @@
 import requests
-
 def main():
     city = 'Moscow,RU'
     appid = '84bfc5f42c5b45d8bdb782bcc1d77cac'
@@ -13,4 +12,5 @@ def main():
               '\nПогодные условия:',i['weather'][0]['description'],
               '\nСкорость ветра:',i['wind']['speed'],'м/с'
               '\nВидимость:',i['visibility'],'метров')
-        print('____________________________')
+if __name__ == '__main__':
+    main()

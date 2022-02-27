@@ -1,1 +1,21 @@
-
+import telebot
+from telebot import types
+token = "5159476276:AAGUod4P9zlmPPL2wNeNmufX500xftv584g"
+bot = telebot.TeleBot(token)
+@bot.message_handler(commands=['start'])
+def start(message):
+    keyboard = types.ReplyKeyboardMarkup()
+    keyboard.row("/help")
+    bot.send_message(message.chat.id, 'Приветствую! Я - твой личный помощник. Чтобы узнать о моих возможностях пропиши команду /help', reply_markup=keyboard)
+@bot.message_handler(commands=['help'])
+def start_message(message):
+    bot.send_message(message.chat.id, "Только новые хиты! Введи команду /music, чтобы узнать о лучших музыкальных новинках 2022 года. \nЧтобы узнать о статистике заболеваемых COVID19 введи команду /covid \nБудь в курсе новых событий. Чтобы узнать о всем, что происходит в мире введи команду /news")
+@bot.message_handler(content_types=['text'])
+def answer(message):
+    if message.text.lower() == "/music":
+        bot.send_message(message.chat.id, 'Лучшие музыкальные хиты и новинки 2022 года - https://open.spotify.com/playlist/37i9dQZF1DX0XUsuxWHRQd?si=87d062028a4d43bc')
+    if message.text.lower() == "/covid":
+        bot.send_message(message.chat.id, 'Статистика заболеваемых короновирусной инфекцией в России - https://xn--80aesfpebagmfblc0a.xn--p1ai/')
+    if message.text.lower() == "/news":
+        bot.send_message(message.chat.id, 'Новости со всего Мира - https://ria.ru/world/')
+bot.polling()
